@@ -1,0 +1,30 @@
+<form (ngSubmit)="getInformation()">
+<input [(ngModel)]="codePrincipal.code"  name="code" type="text">
+<button type="submit" >Recuperar</button><br>
+<div *ngIf=resul >
+<output><b>Nombre:</b> {{resul.firstName}}</output><br>
+<output><b>Apellido:</b> {{resul.lastName}}</output><br>
+<output><b>Edad:</b> {{resul.age}}</output><br>
+<output><b>Número de cuenta:</b> {{resul.account}}</output><br>
+<output *ngIf=!employee.role><b>Fecha de creación:</b> {{resul.date}}</output><output *ngIf=employee.role><b>Cargo desempeñado:</b> {{employee.role}}</output><br>
+<output><b>Saldo actual:</b>  {{resul.balance}}</output><br>
+<output><b>Movimientos:</b></output><br>
+
+<table>
+    <thead>
+        <th>Movimiento detalle</th>
+        <th>Actividad</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let move of resul.movements">
+            <td>{{move.movement}}</td>
+            <td>{{move.activity}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<div *ngIf=this.error >
+    <p>El código ingresado debe tener 9 caracteres</p>
+</div>
+
+</form>
